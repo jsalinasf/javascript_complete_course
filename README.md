@@ -4,7 +4,9 @@
 
 <p>In here you will find my attempts to follow instructor's exercises.</p>
 
-<p>For more information:</p>
 <br />
+
+<p>For more information:</p>
+
 <p><a href="https://www.udemy.com/the-complete-javascript-course/">Udemy Course</a></p>
 <p><a href="https://github.com/jonasschmedtmann/complete-javascript-course/blob/master/editors-setup.md">Github Repo</a></p>
