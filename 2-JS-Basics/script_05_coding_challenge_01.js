@@ -1,3 +1,4 @@
+// Coding Challenge 01
 
 var massMark, massJohn, heightMark, heightJohn, bmiMark, bmiJohn, isMarkBmiHigher;
 
