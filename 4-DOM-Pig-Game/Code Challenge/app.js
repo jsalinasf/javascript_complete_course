@@ -8,11 +8,24 @@ GAME RULES:
 - After that, it's the next player's turn
 - The first player to reach 100 points on GLOBAL score wins the game
 
+YOUR 3 CHALLENGEs
+1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn
+
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, previousDice, maxScore, inputTextValue;
 
 init();
+
+window.onkeyup = keyup;
+
+function keyup(e) {
+    var inputTextValue = e.target.value;
+    if (e.keyCode == 13){
+        maxScore = document.getElementById('maxScoreTxt').value;
+        console.log(maxScore);
+    }
+}
 
 // Anonymous Function = It doesn't have a name, it can't be used anywhere else but only here
 document.querySelector('.btn-roll').addEventListener('click', function() {
@@ -20,21 +33,31 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
         // 1. Random Number
         var dice = Math.floor(Math.random() * 6) + 1;
-        
-        // 2. Display the result
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';
-        diceDOM.src = 'dice-' + dice + '.png';
-        
 
-        // 3. Update the round score IF the rolled number was NOT a 1
-        if (dice !== 1) {
-            // Add Score
-            roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        // Challenge 1 - Two 6 in a row
+        if (previousDice === 6 && dice === 6) {
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            previousDice = 0;
+            nextPlayer();            
         } else {
-            // Next Player
-            nextPlayer();
+            previousDice = dice;
+        
+            // 2. Display the result
+            var diceDOM = document.querySelector('.dice');
+            diceDOM.style.display = 'block';
+            diceDOM.src = 'dice-' + dice + '.png';
+            
+    
+            // 3. Update the round score IF the rolled number was NOT a 1
+            if (dice !== 1) {
+                // Add Score
+                roundScore += dice;
+                document.querySelector('#current-' + activePlayer).textContent = roundScore;
+            } else {
+                // Next Player
+                nextPlayer();
+            }
         }
     } 
 });
@@ -48,7 +71,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         
         // Check if Player won the game
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= maxScore) {
             document.querySelector('#name-' + activePlayer).textContent = "Winner!";
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -87,6 +110,8 @@ function init() {
     roundScore = 0;
     activePlayer = 0;
     gamePlaying = true;
+    previousDice = 0;
+    maxScore = 20;
 
     // You can use querySelector to write text to elements
     // Pay special attention to the difference between textContent and innerHTML. The last one allows me to pass HTML tags
@@ -107,6 +132,7 @@ function init() {
     document.getElementById('current-1').textContent = '0';
     document.getElementById('name-0').textContent = 'Player 1';
     document.getElementById('name-1').textContent = 'Player 2';
+    document.getElementById('maxScoreTxt').textContent = '';
 
     // WE ALWAYS NEED TO REMOVE APPLIED CLASSES for styles
 
