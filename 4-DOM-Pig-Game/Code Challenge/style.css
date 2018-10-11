@@ -103,20 +103,25 @@ body {
     font-size: 1em;
 }
 
-#maxScore {
-    width: 100%;
-    text-align: center;
-}
-
-#maxScoreLabel {
-    font-size: 2em;
-}
-
 #maxScoreTxt {
-    border: 1px solid black;
-    font-size: 2em;
-    width: 60px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 520px;
+    color: #555;
+    font-size: 18px;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 160px;
+    text-transform: uppercase;
 }
+
+#maxScoreTxt:focus {
+    outline: none;
+}
+
+
 
 button {
     position: absolute;

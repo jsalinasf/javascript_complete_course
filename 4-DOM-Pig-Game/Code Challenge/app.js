@@ -13,19 +13,9 @@ YOUR 3 CHALLENGEs
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying, previousDice, maxScore, inputTextValue;
+var scores, roundScore, activePlayer, gamePlaying, previousDice, maxScore;
 
 init();
-
-window.onkeyup = keyup;
-
-function keyup(e) {
-    var inputTextValue = e.target.value;
-    if (e.keyCode == 13){
-        maxScore = document.getElementById('maxScoreTxt').value;
-        console.log(maxScore);
-    }
-}
 
 // Anonymous Function = It doesn't have a name, it can't be used anywhere else but only here
 document.querySelector('.btn-roll').addEventListener('click', function() {
@@ -36,6 +26,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
         // Challenge 1 - Two 6 in a row
         if (previousDice === 6 && dice === 6) {
+            alert('Two 6\'s in a row, you loose everything!')
             scores[activePlayer] = 0;
             document.querySelector('#score-' + activePlayer).textContent = '0';
             previousDice = 0;
@@ -70,6 +61,16 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Update the UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         
+        // Challenge 02
+
+        var input = document.querySelector('#maxScoreTxt').value;
+
+        if (input) {
+            maxScore = input;
+        } else {
+            maxScore = 100;
+        }
+
         // Check if Player won the game
         if (scores[activePlayer] >= maxScore) {
             document.querySelector('#name-' + activePlayer).textContent = "Winner!";
@@ -111,7 +112,6 @@ function init() {
     activePlayer = 0;
     gamePlaying = true;
     previousDice = 0;
-    maxScore = 20;
 
     // You can use querySelector to write text to elements
     // Pay special attention to the difference between textContent and innerHTML. The last one allows me to pass HTML tags
