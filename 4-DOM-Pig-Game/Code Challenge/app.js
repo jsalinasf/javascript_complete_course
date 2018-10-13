@@ -13,7 +13,7 @@ YOUR 3 CHALLENGEs
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying, previousDice, maxScore;
+var scores, roundScore, activePlayer, gamePlaying, previousDice, previousDice2, maxScore;
 
 init();
 
@@ -23,31 +23,45 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
         // 1. Random Number
         var dice = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
+        console.log(dice, dice2);
 
         // Challenge 1 - Two 6 in a row
-        if (previousDice === 6 && dice === 6) {
+        if ((previousDice === 6 && dice === 6) || (previousDice2 === 6 && dice2 === 6)) {
             alert('Two 6\'s in a row, you loose everything!')
             scores[activePlayer] = 0;
             document.querySelector('#score-' + activePlayer).textContent = '0';
             previousDice = 0;
+            previousDice2 = 0;
             nextPlayer();            
         } else {
             previousDice = dice;
+            previousDice2 = dice2;
         
             // 2. Display the result
             var diceDOM = document.querySelector('.dice');
             diceDOM.style.display = 'block';
             diceDOM.src = 'dice-' + dice + '.png';
+
+            var diceDOM2 = document.querySelector('.dice2');
+            diceDOM2.style.display = 'block';
+            diceDOM2.src = 'dice-' + dice2 + '.png';
             
     
             // 3. Update the round score IF the rolled number was NOT a 1
-            if (dice !== 1) {
+            if (dice !== 1 && dice2 !==1) {
                 // Add Score
                 roundScore += dice;
+                roundScore += dice2;
                 document.querySelector('#current-' + activePlayer).textContent = roundScore;
             } else {
                 // Next Player
-                nextPlayer();
+                alert('You rolled a "ONE (1)" in one of your dices, you loose everything!')
+                scores[activePlayer] = 0;
+                document.querySelector('#score-' + activePlayer).textContent = '0';
+                previousDice = 0;
+                previousDice2 = 0;
+                nextPlayer();            
             }
         }
     } 
@@ -75,6 +89,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         if (scores[activePlayer] >= maxScore) {
             document.querySelector('#name-' + activePlayer).textContent = "Winner!";
             document.querySelector('.dice').style.display = 'none';
+            document.querySelector('.dice2').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -100,6 +115,7 @@ function nextPlayer() {
     //document.querySelector('.player-1-panel').classList.add('active');
 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 };
 
 
@@ -112,6 +128,7 @@ function init() {
     activePlayer = 0;
     gamePlaying = true;
     previousDice = 0;
+    previousDice2 = 0;
 
     // You can use querySelector to write text to elements
     // Pay special attention to the difference between textContent and innerHTML. The last one allows me to pass HTML tags
@@ -124,6 +141,7 @@ function init() {
 
     // You can use querySelector to change CSS properties
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 
     // In here I use getElementById to select other elements. This one is faster but only works with ID's
     document.getElementById('score-0').textContent = '0';
