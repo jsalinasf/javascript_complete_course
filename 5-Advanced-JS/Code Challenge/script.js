@@ -51,8 +51,9 @@
             console.log('That\'s Right!');
             score += 1;            
         } else {
-            console.log('Sorry... Incorrect Answer');
+            console.log('Wrong Answer. Try again :)');
         }
-        console.log('You score is: ' + score);
+        console.log('You current score is: ' + score);
+        console.log('-----------------------------');
     } while (userInputText !== 'exit');
 }) ();

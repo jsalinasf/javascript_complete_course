@@ -66,3 +66,11 @@ var Pet = function(name, type, yearOfBirth) {
 Pet.prototype.calculateAge = function() {
     console.log(2018 - this.yearOfBirth);
 }
+
+var sara = new Pet('Sarah', 'Dog', 2013);
+var baily = new Pet('Baily', 'Dog', 2014);
+var nemo = new Pet('Nemo', 'fish', 2011);
+
+sara.calculateAge();
+baily.calculateAge();
+nemo.calculateAge();
