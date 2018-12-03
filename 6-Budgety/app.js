@@ -121,9 +121,7 @@ var budgetController = (function() {
             var allPerc = data.allItems.exp.map(function(cur) {
                 return cur.getPercentage();
             });
-
             return allPerc;
-
         },
 
         getBudget: function() {
@@ -273,8 +271,8 @@ var UIController = (function() {
             nodeListForEach(fields, function(current, index) {
                 if (percentages[index] > 0) {
                     current.textContent = percentages[index] + ' %';
-                } else {
-                    current.textContent = percentages[index] + '---';
+                } else {                    
+                    current.textContent = '---';
                 }  
             });
         },
