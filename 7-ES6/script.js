@@ -1,1 +1,2 @@
-// Lesson 5: 
+// Lesson 06: Destructuring
+
