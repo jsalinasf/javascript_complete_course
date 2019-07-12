@@ -34,3 +34,41 @@ console.log(johnAthlete5.medals);
 johnAthlete5.wonMedal();
 console.log(johnAthlete5.medals);
 
+
+// ES6
+class Person6 {
+    constructor (name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+
+    calculateAge6() {
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+}
+
+class Athlete6 extends Person6 {
+    constructor(name, yearOfBirth, job, olympicGames, medals) {
+        super(name, yearOfBirth, job);
+        this.olympicGames = olympicGames;
+        this.medals = medals;
+    }
+
+    wonMedal6() {
+        this.medals++;
+        console.log(this.medals);
+    }
+}
+
+const johnAthlete6 = new Athlete6('john', 1990, 'swimmer', 3, 10);
+johnAthlete6.calculateAge6();
+console.log(johnAthlete6.medals);
+johnAthlete6.wonMedal6();
+
+
+
+
+
+
