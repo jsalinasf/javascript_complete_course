@@ -73,14 +73,13 @@ function reportParks(p) {
 function reportStreets(s) {
     
     console.log('-----STREETS REPORT-----')
+
+    // Street length total and Street length average
+    const [totalLen, averageLen] = calc(s.map( el => el.length ));
+    console.log(`Our ${s.length} streets have a total length of ${totalLen} km, with and average of ${averageLen} km.`);
     
     // Street length and classification
     s.forEach( (cur) => cur.classifyStreet());
-
-    // Street length total and Street length average
-    const streetsLen = s.map( el => el.length );
-    const [totalLen, averageLen] = calc(streetsLen);
-    console.log(`Our ${s.length} streets have a total length of ${totalLen} km, with and average of ${averageLen} km.`);
 
 }
 
