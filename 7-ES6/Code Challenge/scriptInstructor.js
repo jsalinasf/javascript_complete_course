@@ -47,14 +47,38 @@ const allStreets = [
     new Street('Sunset Boulevard', 1982, 2.5, 5)
 ];
 
+function calc(arr) {
+    const sum = arr.reduce( (previous, current, index) => previous + current, 0); // 0 is the initial value of the accumulator, it could any value you need
+    
+    return [sum, sum / arr.length];
+}
+
 function reportParks(p) {
+    
     console.log('-----PARKS REPORT-----')
+    
+    // Density
     p.forEach( (cur) => cur.treeDensity() );
+
+    // Average Age
+    const ages = p.map( (cur) => new Date().getFullYear() - cur.buildYear);
+    const [totalAge, averageAge] = calc(ages);
+    console.log(`Our ${p.length} parks have an average of ${averageAge} years.`);
+
+    // Which park has more than 1000 trees
+    const i = p.map( el => el.numTrees).findIndex(el => el >= 1000);    
+    console.log(`${p[i].name} has more than 1000 trees`);
 }
 
 function reportStreets(s) {
+    
     console.log('-----STREETS REPORT-----')
+    
+    // Street length and classification
     s.forEach( (cur) => cur.classifyStreet());
+
+
+
 }
 
 reportParks(allParks);
