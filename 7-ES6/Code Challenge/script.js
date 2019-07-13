@@ -1,4 +1,4 @@
-
+// ES6 Code Challenge
 class TownElement {
     constructor(name, buildYear) {
         this.name = name;
@@ -37,7 +37,7 @@ class Street extends TownElement {
 }
 
 // Parks
-const greenPark = new Park('Green Park', 1940, 300, 2);
+const greenPark = new Park('Green Park', 1940, 1300, 2);
 const nationalPark = new Park('National Park', 1945, 600, 3);
 const oakPark = new Park('Oak Park', 1950, 1600, 4);
 
@@ -54,25 +54,33 @@ const arrAges = [greenPark.calculateAge(), nationalPark.calculateAge(), oakPark.
 const streetArray = [oceanAvenue.length, evergreenStreet.length, fourthStreet.length, sunsetBoulevard.length];
 
 // Generic Function to sum elements
-const sumElements = (streetArray) => streetArray.reduce( (a,b) => a + b, 0)
+const sumElements = (args) => args.reduce( (a,b) => a + b, 0)
 
 // Generic Function to calculate Average
 const getAverage = (args) => args.reduce( (a,b) => a + b, 0 ) / args.length;
 
+const thousandTrees = (arr) => {
+    let returnedParks = [];
+    for (let i=0; i<arr.length; i++) {
+        if (arr[i].numberTrees >= 1000) {
+            returnedParks.push(arr[i].name);
+        }
+    }
+    return returnedParks.join(' and ');
+}
+
+
 console.log('-----PARKS REPORT-----');
 console.log(`Our 3 parks have an average of ${getAverage(arrAges)} years.`)
-getAverage(arrAges);
 console.log(`${greenPark.name} has a tree density of ${greenPark.calculateDensity()} trees per square km`);
 console.log(`${nationalPark.name} has a tree density of ${nationalPark.calculateDensity()} trees per square km`);
 console.log(`${oakPark.name} has a tree density of ${oakPark.calculateDensity()} trees per square km`);
 // TODO thousand tress
-console.log(`'' has more than 1000 trees`);
+console.log(`${thousandTrees([greenPark, nationalPark, oakPark])} has more than 1000 trees`);
+
 console.log('-----STREETS REPORT-----');
-// TODO streets length and average
 console.log(`Our 4 streets have a total length of ${sumElements(streetArray)} km, with and average of ${getAverage(streetArray)} km.`)
 console.log(`${oceanAvenue.name}, built in ${oceanAvenue.buildYear}, is a ${oceanAvenue.classifyStreet()} street`);
 console.log(`${evergreenStreet.name}, built in ${evergreenStreet.buildYear}, is a ${evergreenStreet.classifyStreet()} street`);
 console.log(`${fourthStreet.name}, built in ${fourthStreet.buildYear}, is a ${fourthStreet.classifyStreet()} street`);
 console.log(`${sunsetBoulevard.name}, built in ${sunsetBoulevard.buildYear}, is a ${sunsetBoulevard.classifyStreet()} street`);
-
-
