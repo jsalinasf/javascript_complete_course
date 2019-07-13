@@ -10,7 +10,7 @@ class Park extends TownElement {
     constructor(name, buildYear, numberTrees, parkArea) {
         super(name, buildYear);
         this.numberTrees = numberTrees;
-        this.parkArea = parkArea;
+        this.parkArea = parkArea; //km2
     }
     calculateDensity () {
         return this.numberTrees / this.parkArea;
@@ -37,9 +37,9 @@ class Street extends TownElement {
 }
 
 // Parks
-const greenPark = new Park('Green Park', 1940, 1300, 2);
-const nationalPark = new Park('National Park', 1945, 600, 3);
-const oakPark = new Park('Oak Park', 1950, 1600, 4);
+const greenPark = new Park('Green Park', 1987, 215, 0.2);
+const nationalPark = new Park('National Park', 1894, 3541, 2.9);
+const oakPark = new Park('Oak Park', 1953, 949, 0.4);
 
 // Streets
 const oceanAvenue = new Street('Ocean Avenue', 1999, 4);
