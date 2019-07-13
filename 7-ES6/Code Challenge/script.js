@@ -59,6 +59,7 @@ const sumElements = (args) => args.reduce( (a,b) => a + b, 0)
 // Generic Function to calculate Average
 const getAverage = (args) => args.reduce( (a,b) => a + b, 0 ) / args.length;
 
+// Return the names of the parks that have more than 1000 trees
 const thousandTrees = (arr) => {
     let returnedParks = [];
     for (let i=0; i<arr.length; i++) {
@@ -76,7 +77,7 @@ console.log(`${greenPark.name} has a tree density of ${greenPark.calculateDensit
 console.log(`${nationalPark.name} has a tree density of ${nationalPark.calculateDensity()} trees per square km`);
 console.log(`${oakPark.name} has a tree density of ${oakPark.calculateDensity()} trees per square km`);
 // TODO thousand tress
-console.log(`${thousandTrees([greenPark, nationalPark, oakPark])} has more than 1000 trees`);
+console.log(`${thousandTrees([greenPark, nationalPark, oakPark])} have/has more than 1000 trees`);
 
 console.log('-----STREETS REPORT-----');
 console.log(`Our 4 streets have a total length of ${sumElements(streetArray)} km, with and average of ${getAverage(streetArray)} km.`)
