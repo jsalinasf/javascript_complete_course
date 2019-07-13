@@ -77,7 +77,10 @@ function reportStreets(s) {
     // Street length and classification
     s.forEach( (cur) => cur.classifyStreet());
 
-
+    // Street length total and Street length average
+    const streetsLen = s.map( el => el.length );
+    const [totalLen, averageLen] = calc(streetsLen);
+    console.log(`Our ${s.length} streets have a total length of ${totalLen} km, with and average of ${averageLen} km.`);
 
 }
 
