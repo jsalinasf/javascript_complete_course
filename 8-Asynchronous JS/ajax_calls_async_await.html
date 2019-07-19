@@ -19,13 +19,22 @@
         //console.log(data);
         const tomorrow = data.consolidated_weather[1];
         console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}`);
+        return data;
       } catch(error) {
         console.log(error);
       }
     }
-   
+    
+    // Uncomment the following lines to see the actual API CALL
+    
     // getWeatherAW(2487956);
-    // getWeatherAW(44418);
+    
+    // Storing returned value into a variable
+    // let dataLondon;
+    // getWeatherAW(44418).then(data => {
+    //   dataLondon = data;
+    //   console.log(dataLondon);
+    // });
   </script>  
 
 </body>
