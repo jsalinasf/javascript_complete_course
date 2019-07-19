@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AJAX Calls, Await/Sync</title>
+</head>
+<body>
+  <h1>MetaWeather</h1>
+  <h2>Async/Await</h2>
+
+  <script>
+    async function getWeatherAW(woeid) {
+      try {
+        const result = await fetch(`http://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`);
+        // console.log(result);
+        const data = await result.json();
+        //console.log(data);
+        const tomorrow = data.consolidated_weather[1];
+        console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}`);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+   
+    // getWeatherAW(2487956);
+    // getWeatherAW(44418);
+  </script>  
+
+</body>
+</html>
