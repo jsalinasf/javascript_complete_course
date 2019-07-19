@@ -70,22 +70,41 @@
         });
       };
 
-      getIDs
-      .then(IDS => {
-        console.log(IDS);
-        return getRecipe(IDS[2])
-      })
-      .then(recipe => {
-        console.log(recipe);
-        return getRelated('Jonas');
-      })
-      .then ( recipe => {
-        console.log(recipe);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      // ES6 - 2015
+      // getIDs
+      // .then(IDS => {
+      //   console.log(IDS);
+      //   return getRecipe(IDS[2])
+      // })
+      // .then(recipe => {
+      //   console.log(recipe);
+      //   return getRelated('Jonas');
+      // })
+      // .then ( recipe => {
+      //   console.log(recipe);
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // });
 
+      // ES8 - ES2017
+      // It always runs on the background
+      // It will NOT block the main execution
+      // "await" can only be inside an "async" function
+      async function getRecipesAW() {
+        const IDs = await getIDs;
+        console.log(IDs);
+        const recipe = await getRecipe(IDs[2]);
+        console.log(recipe);
+        const related = await getRelated('Jonas');
+        console.log(related);
+        return recipe;
+      }
+      const rec = getRecipesAW();  
+      // console.log(rec);
+
+      getRecipesAW ()
+      .then(result => console.log(`${result} is the best ever`));
 
   </script>  
 </body>
